@@ -22,12 +22,13 @@ namespace Project_Login.Controllers
         [Route("AddCustomer")]
         public IActionResult  Add(Customer customer)
         {
+
              return Ok(es.AddCustomer(customer));
         }
 
         [HttpPost]
         [Route("LoginCustomer")]
-        public IActionResult Login(Customer customer)
+        public IActionResult Login([FromForm]Customer customer)
         {
             return Ok(es.LoginCustomer(customer));
         }
@@ -37,5 +38,20 @@ namespace Project_Login.Controllers
         {
             return  es.GetProducts();
         }
+
+        [HttpPost]
+        [Route("{id}")]
+        public IActionResult FormDAta([FromRoute]int id,[FromForm]Customer customer)
+        {
+            return Ok("success");
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Body([FromRoute] int id,[FromBody] Customer customer)
+        {
+            return Ok("success");
+        }
+
     }
 }
